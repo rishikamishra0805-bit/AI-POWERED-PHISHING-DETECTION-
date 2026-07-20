@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Phishing Detection</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fb;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        .box {
+            background: white;
+            width: 450px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #1a237e;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 15px;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 12px 30px;
+            background-color: #1a237e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            cursor: pointer;
+        }
+
+        .safe {
+            color: green;
+            font-size: 22px;
+        }
+
+        .danger {
+            color: red;
+            font-size: 22px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>🛡️ AI Powered Phishing Detection</h1>
+
+<p>
+Machine Learning based Cybersecurity Project
+</p>
+
+<form method="POST">
+
+<input type="text" 
+name="url" 
+placeholder="Enter Website URL">
+
+<br>
+
+<button type="submit">Check URL</button>
+
+</form>
+
+
+{% if result %}
+    {% if "Safe" in result %}
+        <p class="safe">{{ result }}</p>
+    {% else %}
+        <p class="danger">{{ result }}</p>
+    {% endif %}
+{% endif %}
+
+
+</div>
+
+</body>
+</html>
