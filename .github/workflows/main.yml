@@ -1,0 +1,34 @@
+name: Train Phishing Detection Model
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      run: |
+        pip install pandas numpy scikit-learn joblib
+    
+    - name: Train model
+      run: |
+        python train_model.py
+    
+    - name: Commit model
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add MODEL/phishing_model.pkl
+        git diff --staged --quiet || git commit -m "🤖 Auto-train model [skip ci]"
+        git push || true
