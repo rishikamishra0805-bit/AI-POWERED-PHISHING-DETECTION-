@@ -5,7 +5,8 @@ from feature_extraction import extract_features
 app = Flask(__name__)
 
 # Saved model load
-model = joblib.load("model/phishing_model.pkl")
+model = joblib.load("MODEL/phishing_model.pkl")
+
 
 
 @app.route("/", methods=["GET", "POST"])
