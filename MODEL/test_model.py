@@ -10,20 +10,34 @@ def extract_features(url):
     features = [0] * 30
     parsed = urlparse(url)
     
+    # 1. URL length
     features[0] = len(url)
+    
+    # 2. HTTPS
     features[1] = 1 if parsed.scheme == "https" else -1
+    
+    # 3. @ symbol
     features[2] = -1 if "@" in url else 1
+    
+    # 4. Number of dots
     features[3] = url.count(".")
     
+    # 5. URL has IP address
     if re.match(r"^(http://|https://)?\d+\.\d+\.\d+\.\d+", url):
         features[4] = -1
     else:
         features[4] = 1
     
+    # 6. Hyphen in domain
     features[5] = -1 if "-" in parsed.netloc else 1
+    
+    # 7. Number of digits
     features[6] = sum(c.isdigit() for c in url)
+    
+    # 8. Special characters
     features[7] = sum(not c.isalnum() for c in url)
     
+    # 9-30. Default features
     for i in range(8, 30):
         features[i] = 1
     
@@ -35,36 +49,29 @@ def test_model():
     print("🧪 AI POWERED PHISHING DETECTION - MODEL TESTING")
     print("=" * 80)
     
-    # Load model from MODEL folder
+    # Load model
     try:
         model = joblib.load("MODEL/phishing_model.pkl")
         print("✅ Model loaded successfully from MODEL/phishing_model.pkl!")
-    except FileNotFoundError:
+    except:
         try:
             model = joblib.load("phishing_model.pkl")
             print("✅ Model loaded successfully from root!")
         except Exception as e:
             print(f"❌ Error loading model: {str(e)}")
-            print("\n💡 Please run train_model.py first to create the model.")
+            print("\n💡 Please run train_model.py first.")
             return
     
     # Test URLs
     test_urls = [
-        # Safe URLs
         ("https://www.google.com", "Safe"),
         ("https://www.github.com", "Safe"),
         ("https://www.python.org", "Safe"),
         ("https://www.stackoverflow.com", "Safe"),
-        ("https://www.wikipedia.org", "Safe"),
-        ("https://www.microsoft.com", "Safe"),
-        
-        # Phishing URLs
         ("http://login-secure-verify.com", "Phishing"),
         ("http://192.168.1.1/account", "Phishing"),
         ("https://paypal-verify-secure.com", "Phishing"),
         ("http://secure-login-verify.net", "Phishing"),
-        ("http://bank-account-update.com", "Phishing"),
-        ("https://login-verify-paypal.com", "Phishing"),
     ]
     
     print("\n📊 TESTING URLS")
@@ -76,44 +83,23 @@ def test_model():
     total = len(test_urls)
     
     for url, expected in test_urls:
-        # Extract features
         features = extract_features(url)
-        
-        # Predict
         start_time = time.time()
         prediction = model.predict([features])[0]
         prediction_time = (time.time() - start_time) * 1000
         
-        # Map prediction
         predicted = "Phishing" if prediction == -1 else "Safe"
         
-        # Check result
         result = "✅ PASS" if predicted == expected else "❌ FAIL"
         if predicted == expected:
             correct += 1
         
-        # Print result
         print(f"{url[:38]:<40} {expected:<15} {predicted:<15} {result:<15}")
-        print(f"  ⏱️ Prediction time: {prediction_time:.2f}ms")
+        print(f"  ⏱️ Time: {prediction_time:.2f}ms")
     
     print("-" * 80)
     accuracy = (correct / total) * 100
     print(f"\n📊 Test Accuracy: {accuracy:.2f}% ({correct}/{total})")
-    
-    # Additional test with suspicious keywords
-    print("\n🔍 SUSPICIOUS KEYWORD TEST")
-    print("-" * 80)
-    suspicious_words = ["login", "verify", "update", "secure", "account", "password", "bank", "confirm"]
-    
-    for word in suspicious_words:
-        test_url = f"http://{word}-test.com"
-        features = extract_features(test_url)
-        prediction = model.predict([features])[0]
-        result = "Phishing" if prediction == -1 else "Safe"
-        print(f"  {word:<15} → {result}")
-    
-    print("\n" + "=" * 80)
-    print("🎉 TESTING COMPLETE!")
     print("=" * 80)
 
 if __name__ == "__main__":
