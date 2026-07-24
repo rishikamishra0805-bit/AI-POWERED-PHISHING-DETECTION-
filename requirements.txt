@@ -1,9 +1,9 @@
-flask
+streamlit
 joblib
 scikit-learn
 pandas
 numpy
 tldextract
-gunicorn
 requests
 beautifulsoup4
+gunicorn
