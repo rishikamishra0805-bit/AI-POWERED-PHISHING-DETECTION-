@@ -351,40 +351,229 @@ text
 
 ---
 
-## 📝 How to Update README.md:
+# 🛡️ AI Powered Phishing Detection
 
-### Option 1: GitHub Website Se
+An AI-powered phishing detection system that identifies malicious and legitimate URLs using Machine Learning. The application analyzes various URL-based features and predicts whether a website is safe or a phishing attempt.
 
-1. GitHub repository mein jaayein
-2. `README.md` file par click karein
-3. **Edit** (pencil icon) click karein
-4. Upar diya gaya **pura code** copy karein
-5. Paste karein
-6. **Commit changes** click karein
+---
 
-### Option 2: VS Code Se
+## 📌 Project Overview
 
-1. VS Code mein `README.md` open karein
-2. Upar diya gaya **pura code** copy karein
-3. Paste karein (replace existing)
-4. Save karein (`Ctrl+S`)
-5. Git commit aur push karein:
+Phishing attacks are one of the most common cybersecurity threats, where attackers create fake websites to steal sensitive information such as usernames, passwords, banking credentials, and personal data.
+
+This project uses Machine Learning to detect phishing websites by extracting important URL features and classifying them as **Legitimate** or **Phishing**.
+
+---
+
+## 🚀 Features
+
+- Detects phishing URLs using Machine Learning
+- Real-time URL prediction
+- User-friendly web interface
+- Fast and accurate classification
+- Feature extraction from URLs
+- Displays prediction result instantly
+
+---
+
+## 🛠️ Technologies Used
+
+- Python 3
+- Flask
+- Scikit-learn
+- Pandas
+- NumPy
+- HTML
+- CSS
+- JavaScript
+- Pickle
+- Regular Expressions
+
+---
+
+## 📂 Project Structure
+
+```
+AI-POWERED-PHISHING-DETECTION/
+│
+├── app.py
+├── model.pkl
+├── feature_extraction.py
+├── requirements.txt
+├── templates/
+│   └── index.html
+├── static/
+│   ├── css/
+│   ├── js/
+│   └── images/
+├── dataset/
+├── screenshots/
+└── README.md
+```
+
+---
+
+## ⚙️ Installation
+
+### Clone Repository
 
 ```bash
-git add README.md
-git commit -m "Update README with complete documentation"
-git push
-✅ README.md Mein Kya Kya Hai:
-Section	Description
-Project Overview	What is this project
-Features	Key features list
-Tech Stack	Technologies used
-Architecture	System flow diagram
-Feature Extraction	30 features explanation
-Model Performance	Accuracy and metrics
-Installation	Setup steps
-Deployment	How to deploy
-Testing	How to test
-Screenshots	Images of the app
-Contributing	How to contribute
-License	MIT License
+git clone https://github.com/your-username/AI-POWERED-PHISHING-DETECTION.git
+```
+
+Move to project folder
+
+```bash
+cd AI-POWERED-PHISHING-DETECTION
+```
+
+Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the application
+
+```bash
+python app.py
+```
+
+Open your browser
+
+```
+http://127.0.0.1:5000
+```
+
+---
+
+## 📊 Working
+
+1. User enters a website URL.
+2. URL features are extracted.
+3. Features are passed to the trained Machine Learning model.
+4. Model predicts whether the URL is:
+   - Legitimate
+   - Phishing
+5. Result is displayed to the user.
+
+---
+
+## 🔍 URL Features Used
+
+The model extracts multiple features from the URL, including:
+
+- URL Length
+- HTTPS Usage
+- IP Address Detection
+- Number of Dots
+- Number of Hyphens
+- Number of Digits
+- Number of Subdomains
+- Presence of '@'
+- Presence of '//'
+- Special Characters
+- Prefix/Suffix
+- Domain Length
+- Suspicious Keywords
+- Query Parameters
+- Path Length
+- URL Entropy
+- Total URL Tokens
+- and several additional URL-based characteristics.
+
+---
+
+## 🤖 Machine Learning
+
+The phishing detection model is trained using supervised Machine Learning.
+
+### Workflow
+
+```
+Dataset
+   │
+   ▼
+Feature Extraction
+   │
+   ▼
+Data Preprocessing
+   │
+   ▼
+Model Training
+   │
+   ▼
+Saved Model (.pkl)
+   │
+   ▼
+Flask Web Application
+   │
+   ▼
+Prediction
+```
+
+---
+
+## 📸 Screenshots
+
+Add screenshots here:
+
+- Home Page
+- URL Input
+- Legitimate Prediction
+- Phishing Prediction
+
+---
+
+## 📈 Future Enhancements
+
+- Deep Learning Model
+- Browser Extension
+- API Integration
+- Live Threat Intelligence
+- QR Code Detection
+- Email Phishing Detection
+- Domain Reputation Analysis
+- SSL Certificate Validation
+
+---
+
+## 🎯 Applications
+
+- Cybersecurity
+- Educational Projects
+- Website Security
+- Browser Security
+- URL Verification
+- Security Awareness
+
+---
+
+## ✅ Advantages
+
+- Fast prediction
+- Easy to use
+- Lightweight
+- Accurate detection
+- Real-time analysis
+- Low computational cost
+
+---
+
+## ⚠️ Limitations
+
+- Depends on training dataset quality.
+- Cannot guarantee 100% detection.
+- Does not analyze webpage content.
+- New phishing techniques may reduce accuracy.
+
+---
+
+## 👨‍💻 Author
+
+**Rishika Mishra**
+
+Cybersecurity & AI Enthusiast
+## 📜 License
+
+This project is developed for educational and academic purposes.
