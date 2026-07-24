@@ -1,0 +1,18 @@
+# Remove or comment out these lines if they exist:
+# model/phishing_model.pkl
+# *.pkl
+
+# Instead, only ignore these:
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+*.db
+*.sqlite
+.DS_Store
+.idea/
+.vscode/
